@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+	<title>span-killer</title>
+</head>
+<body>
+	<div id="original-text" onchange="handleChange()">
+		<h1>Paste your original HTML code here</h1>
+		<p>Paste and then leave the text area by clicking somewhere else.</p>
+		<textarea id="original"></textarea>
+	</div>
+	<div id="intermediate" style="display: none;"></div>
+	<div id="result-text">
+		<h1>Get your results here</h1>
+		<textarea id="result"></textarea>
+	</div>
+	<script type="text/javascript">
+		const originalElement = document.getElementById('original');
+		const resultElement = document.getElementById('result');
+		const intermediateElement = document.getElementById('intermediate');
+		function handleChange() {
+			intermediateElement.innerHTML = originalElement.value;
+			document.querySelectorAll('#intermediate span').forEach(spanElmt => {
+				spanElmt.outerHTML = spanElmt.innerHTML;
+			});
+			resultElement.value = intermediateElement.innerHTML;
+		}
+	</script>
+</body>
+</html>
